@@ -1,34 +1,15 @@
 import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
-// import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
-// import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
-import Card from "../../components/Card";
 import SearchResults from "../../components/SearchResults";
 
-class Books extends Component {
+class SearchBooks extends Component {
   // Setting our component's initial state
   state = {
-    result: {},
+    books: [],
     search: ""
-  };
-
-  searchBooks = query => {
-    API.searchBooks(query)
-      .then(res => {
-        console.log(res.data)
-        this.setState({ result: res.data })
-        console.log(this.state.result.items[2].volumeInfo.title)
-        console.log(this.state.result.items[2].volumeInfo.authors[0])
-        console.log(this.state.result.items[2].volumeInfo.description)
-        console.log(this.state.result.items[2].volumeInfo.imageLinks.thumbnail)
-        console.log(this.state.result.items[2].volumeInfo.canonicalVolumeLink)
-      // (res => this.setState({ result: res.data }))
-    })
-      .catch(err => console.log(err));
-      
   };
 
   // Handles updating component state when the user types into the input field
@@ -43,13 +24,40 @@ class Books extends Component {
   // Then reload books from the database
   handleFormSubmit = event => {
     event.preventDefault();
-      this.searchBooks(this.state.search);
-      this.setState({search: ""});
-      
-        // .then(res => this.loadBooks())
-        // .catch(err => console.log(err));
     
+    API.searchBooks(this.state.search)
+    .then(res => {
+      console.log(res.data)
+      let results = res.data.items 
+
+      results = results.map(result => {
+        result = {
+          key: result.id,
+          id: result.id,
+          title: result.volumeInfo.title,
+          author: result.volumeInfo.authors,
+          description: result.volumeInfo.description,
+          image: result.volumeInfo.imageLinks.thumbnail,
+          link: result.volumeInfo.infoLink
+        }
+        return result
+      })
+      this.setState({ books: results })
+      this.setState({search: ""});
+  })
+    .catch(err => console.log(err)); 
   };
+
+  handleSavedButton = event => {
+    // console.log(event)
+    event.preventDefault();
+    console.log(this.state.books)
+    let savedBooks = this.state.books.filter(book => book.id === event.target.id)
+    savedBooks = savedBooks[0];
+    API.saveBook(savedBooks)
+        .then(this.setState({ message: alert("Your book is saved") }))
+        .catch(err => console.log(err))
+  }
 
   render() {
     return (
@@ -86,21 +94,7 @@ class Books extends Component {
         <Row>
           <Col size="sm-12">
             <div className="searchResults container">
-              <h5>Search Results</h5>
-            <Card
-              heading={this.state.result.Title || "Search Results"}
-            > {this.state.result.Title ? (
-                <SearchResults
-                  title={this.state.result.items[2].volumeInfo.title}
-                  author={this.state.result.items[2].volumeInfo.authors[0]}
-                  description={this.state.result.items[2].volumeInfo.description}
-                  image={this.state.result.items[2].volumeInfo.imageLinks.thumbnail}
-                  link={this.state.result.items[2].volumeInfo.canonicalVolumeLink}
-                />
-              ) : (
-                <h3>No Results to Display</h3>
-              )}
-            </Card>
+              <SearchResults books={this.state.books} key={this.state.books.id} handleSaveButton={this.handleSaveButton}/>
             </div>
           </Col>
         </Row>
@@ -109,4 +103,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default SearchBooks;

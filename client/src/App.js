@@ -1,12 +1,12 @@
 import React from "react";
-import Books from "./pages/Books";
+import SearchBooks from "./pages/SearchBooks";
 import Nav from "./components/Nav";
 
 function App() {
   return (
     <div>
       <Nav />
-      <Books />
+      <SearchBooks />
     </div>
   );
 }
