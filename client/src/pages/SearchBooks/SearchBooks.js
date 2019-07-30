@@ -4,6 +4,7 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 import SearchResults from "../../components/SearchResults";
+import "./style.css";
 
 class SearchBooks extends Component {
   // Setting our component's initial state
@@ -48,14 +49,13 @@ class SearchBooks extends Component {
     .catch(err => console.log(err)); 
   };
 
-  handleSavedButton = event => {
-    // console.log(event)
+  handleSaveButton = event => {
     event.preventDefault();
-    console.log(this.state.books)
     let savedBooks = this.state.books.filter(book => book.id === event.target.id)
     savedBooks = savedBooks[0];
+    console.log(savedBooks)
     API.saveBook(savedBooks)
-        .then(this.setState({ message: alert("Your book is saved") }))
+        .then(alert(`${savedBooks.title} has been saved`))
         .catch(err => console.log(err))
   }
 
@@ -93,8 +93,8 @@ class SearchBooks extends Component {
         </Row>
         <Row>
           <Col size="sm-12">
-            <div className="searchResults container">
-              <SearchResults books={this.state.books} key={this.state.books.id} handleSaveButton={this.handleSaveButton}/>
+            <div className="container results">
+              <SearchResults books={this.state.books} handleSaveButton={this.handleSaveButton}/>
             </div>
           </Col>
         </Row>

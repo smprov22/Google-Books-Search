@@ -9,7 +9,7 @@ function Nav() {
           <a href="/" className="brand-logo">Google Books</a>
           <ul className="right">
             <li><a href="/">Search</a></li>
-            <li><a href="/">Saved</a></li>
+            <li><a href="/saved">Saved</a></li>
           </ul>
         </div>
       </nav>

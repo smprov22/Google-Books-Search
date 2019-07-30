@@ -1,5 +1,6 @@
 import React from "react";
 import { Col, Row } from "../../components/Grid";
+import "./style.css";
 
 const SearchResults = props => {
   return (props.books.length === 0) ? (
@@ -25,24 +26,18 @@ const SearchResults = props => {
                     <Col size="1" className="emptyCol" />
                     {/* col-9 show information of the book */}
                     <Col size="9" className="bookInfo">
-                      <Row>
                         <h4 className="bookTitle">{book.title}</h4>
-                      </Row>
-                      <Row>
                         <h5 className="bookAuthor">{book.author}</h5>
-                      </Row>
-                      <Row>
                         <p className="bookDescription truncate">{book.description}</p>
-                      </Row>
                     </Col>
                   </Row>
                   <br></br>
                   <Row className="buttonDiv ">
-                    <button className="saveBook btn btn-primary" id={book.id} onClick={(event) => props.handleSavedButton(event)}>
+                    <button className="saveBook waves-effect waves-light btn indigo darken-4 right" id={book.id} onClick={(event) => props.handleSaveButton(event)}>
                       Save Book
                     </button>
                     <a href={book.link} target="_blank">
-                      <button className="viewBook btn btn-success">
+                      <button className="viewBook waves-effect waves-light btn indigo darken-4 right">
                         View Book
                       </button>
                     </a>

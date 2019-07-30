@@ -1,13 +1,24 @@
 import React from "react";
 import SearchBooks from "./pages/SearchBooks";
 import Nav from "./components/Nav";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import SaveBooks from "./pages/SaveBooks";
+import NotFound from "./pages/NotFound";
+import "./App.css"
 
 function App() {
   return (
-    <div>
-      <Nav />
-      <SearchBooks />
-    </div>
+    <Router>
+      <div>
+        <Nav />
+        <Switch>
+            <Route exact path="/" component={SearchBooks} />
+            <Route exact path="/saved" component={SaveBooks} />
+            <Route exact path="/saved/:id" component={SaveBooks} />
+            <Route component={NotFound} /> 
+          </Switch>
+      </div>
+    </Router>
   );
 }
 

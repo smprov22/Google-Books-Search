@@ -1,0 +1,12 @@
+.searchbox {
+  background-color: white;
+  padding: 20px 30px 50px;
+}
+
+.results {
+  padding: 20px 30px 50px;
+}
+
+.btn {
+  margin-right: 5px;
+}
