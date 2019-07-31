@@ -7,7 +7,7 @@ const SavedResults = props => {
         <div className="card">
             <div className="card-body">
                 <div className="results">
-                    <h3>Books that You Saved</h3>
+                    <h5>Books that You Saved</h5>
                 </div>
             </div>
         </div>
@@ -18,8 +18,8 @@ const SavedResults = props => {
                     <h5>Saved Books</h5>
                     {props.savedBooks.map(savedbook => {
                         return (
-                            <li className="list-group-item">
-                                <Row className="SearchResult" id={savedbook.title + "Card"} key={savedbook._id}>
+                            <li className="list-group-item" key={savedbook._id}>
+                                <Row className="SearchResult" id={savedbook.title + "Card"}>
                                     {/* col-3 show image of the book */}
                                     <Col size="2" className="bookImage">
                                         <img src={savedbook.image} alt={savedbook.title} />
@@ -27,8 +27,8 @@ const SavedResults = props => {
                                     <Col size="1" className="emptyCol"/>
                                     {/* col-9 show information of the book */}
                                     <Col size="9" className="bookInfo">
-                                            <h4 className="bookTitle">{savedbook.title}</h4>
-                                            <h5 className="bookAuthor">{savedbook.authors}</h5>
+                                            <h5 className="bookTitle">{savedbook.title}</h5>
+                                            <h6 className="bookAuthor">{savedbook.authors}</h6>
                                             <p className="bookDescription truncate">{savedbook.description}</p>
                                     </Col>
                                 </Row>

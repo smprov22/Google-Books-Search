@@ -26,8 +26,8 @@ const SearchResults = props => {
                     <Col size="1" className="emptyCol" />
                     {/* col-9 show information of the book */}
                     <Col size="9" className="bookInfo">
-                        <h4 className="bookTitle">{book.title}</h4>
-                        <h5 className="bookAuthor">{book.author}</h5>
+                        <h5 className="bookTitle">{book.title}</h5>
+                        <h6 className="bookAuthor">by {book.author}</h6>
                         <p className="bookDescription truncate">{book.description}</p>
                     </Col>
                   </Row>

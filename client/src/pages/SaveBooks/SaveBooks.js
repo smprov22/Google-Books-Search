@@ -26,8 +26,8 @@ class SaveBooks extends Component {
         return (
             <Container fluid className="container" >
                 <Jumbotron>
-                    <h1>Google Books Search</h1>
-                    <h4>Search for and Save books of interest</h4>
+                    <h1 style={{fontFamily: "Roboto"}}>Google Books Search</h1>
+                    <h4 style={{fontFamily: "Roboto"}}>Search for and Save books of interest</h4>
                 </Jumbotron>
                 <Container>
                     <SavedResults savedBooks={this.state.savedBooks} handleDeleteButton={this.handleDeleteButton} />

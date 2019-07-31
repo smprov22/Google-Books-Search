@@ -38,7 +38,7 @@ class SearchBooks extends Component {
           title: result.volumeInfo.title,
           author: (result.volumeInfo.authors.length > 1) ? result.volumeInfo.authors.join(", ") : result.volumeInfo.authors,
           description: result.volumeInfo.description,
-          image: result.volumeInfo.imageLinks.thumbnail,
+          image: result.volumeInfo.imageLinks.smallThumbnail,
           link: result.volumeInfo.infoLink
         }
         return result
@@ -65,15 +65,15 @@ class SearchBooks extends Component {
         <Row>
           <Col size="sm-12">
             <Jumbotron>
-              <h1>Google Books Search</h1>
-              <h4>Search for and Save books of interest</h4>
+              <h1 className="headline" style={{fontFamily: "Roboto"}}>Google Books Search</h1>
+              <h4 className="subtitle" style={{fontFamily: "Roboto"}}>Search for and Save books of interest</h4>
             </Jumbotron>
           </Col>
         </Row>
         <Row>
           <Col size="sm-12">
             <div className="searchbox container">
-              <h5>Book Search</h5>
+              <h5 style={{fontFamily: "Roboto"}}>Book Search</h5>
               <form>
                 <Input
                   value={this.state.search}
