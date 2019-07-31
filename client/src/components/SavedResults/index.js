@@ -15,7 +15,7 @@ const SavedResults = props => {
         <div className="card">
             <div className="card-body player">
                 <div className="article">
-                    <h5>Books that You Saved</h5>
+                    <h5>Saved Books</h5>
                     {props.savedBooks.map(savedbook => {
                         return (
                             <li className="list-group-item">
@@ -37,7 +37,7 @@ const SavedResults = props => {
                                     <button className="deleteBook waves-effect waves-light btn red darken-2" id={savedbook._id} onClick={() => props.handleDeleteButton(savedbook._id)}>
                                         Delete Book
                                     </button>
-                                    <a href={savedbook.link} target="_blank">
+                                    <a href={savedbook.link}>
                                         <button className="viewBook waves-effect waves-light btn indigo darken-4">
                                             View Book
                                         </button>

@@ -36,7 +36,7 @@ class SearchBooks extends Component {
           key: result.id,
           id: result.id,
           title: result.volumeInfo.title,
-          author: result.volumeInfo.authors,
+          author: (result.volumeInfo.authors.length > 1) ? result.volumeInfo.authors.join(", ") : result.volumeInfo.authors,
           description: result.volumeInfo.description,
           image: result.volumeInfo.imageLinks.thumbnail,
           link: result.volumeInfo.infoLink
