@@ -35,16 +35,17 @@ class SearchBooks extends Component {
         result = {
           key: result.id,
           id: result.id,
-          title: result.volumeInfo.title,
-          author: (result.volumeInfo.authors.length > 1) ? result.volumeInfo.authors.join(", ") : result.volumeInfo.authors,
-          description: result.volumeInfo.description,
-          image: result.volumeInfo.imageLinks.smallThumbnail,
-          link: result.volumeInfo.infoLink
+          title: (!result.volumeInfo.title) ? "No title information to display" : result.volumeInfo.title,
+          author: (!result.volumeInfo.authors) ? "No author information to display" : (result.volumeInfo.authors.length > 1) ? result.volumeInfo.authors.join(", ") : result.volumeInfo.authors,
+          description: (!result.volumeInfo.description) ? "No description to display" : result.volumeInfo.description,
+          image: (!result.volumeInfo.imageLinks.smallThumbnail) ? "No image" : result.volumeInfo.imageLinks.smallThumbnail,
+          link: (!result.volumeInfo.infoLink) ? "No link to display" : result.volumeInfo.infoLink
         }
         return result
       })
       this.setState({ books: results })
       this.setState({search: ""});
+      console.log(results)
   })
     .catch(err => console.log(err)); 
   };

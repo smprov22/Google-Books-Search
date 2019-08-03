@@ -18,7 +18,6 @@ module.exports = {
     db.Book
       .create(req.body)
       .then(bookData =>{ 
-        console.log(bookData, "book cont. line 21")
         res.json(bookData)})
       .catch(err => res.status(422).json(err));
   },
