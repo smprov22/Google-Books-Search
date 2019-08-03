@@ -20,19 +20,19 @@ const SearchResults = props => {
               return (
                 <li className="search-list list-group-item" key={book.id}>
                   <Row className="SearchResult row" id={book.title + "Card"}>
-                    <Col size="2" className="bookImage">
+                    <Col size="2">
                       <img src={book.image} alt={book.title} />
                     </Col>
-                    <Col size="1" className="emptyCol" />
+                    <Col size="1" />
                     {/* col-9 show information of the book */}
-                    <Col size="9" className="bookInfo">
+                    <Col size="9">
                         <h5 className="bookTitle">{book.title}</h5>
                         <h6 className="bookAuthor">by {book.author}</h6>
                         <p className="bookDescription truncate">{book.description}</p>
                     </Col>
                   </Row>
                   <br></br>
-                  <Row className="buttonDiv ">
+                  <Row>
                     <button className="saveBook waves-effect waves-light btn indigo darken-4 right" id={book.id} onClick={(event) => props.handleSaveButton(event)}>
                       Save Book
                     </button>
